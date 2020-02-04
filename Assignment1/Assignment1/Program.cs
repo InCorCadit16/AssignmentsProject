@@ -14,6 +14,9 @@ namespace Assignment1
 
             string s2 = "An update in delete_branch";
             Console.WriteLine(s2);
+
+            string s3 = "new stirng for truck";
+            Console.WriteLine(s3);
         }
     }
 }
