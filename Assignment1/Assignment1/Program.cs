@@ -11,6 +11,9 @@ namespace Assignment1
 
             string str = "String from text_branch";
             Console.WriteLine(str);
+
+            string s2 = "An update in delete_branch";
+            Console.WriteLine(s2);
         }
     }
 }
