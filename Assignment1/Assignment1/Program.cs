@@ -6,7 +6,11 @@ namespace Assignment1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            string s = "Hello World!";
+            Console.WriteLine(s);
+
+            string s1 = "String from master";
+            Console.WriteLine(s1);
         }
     }
 }
