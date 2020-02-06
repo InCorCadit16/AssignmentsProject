@@ -6,33 +6,33 @@ namespace Assignment3
     {
         interface ISingable
         {
-            public void sing();
+            public void Sing();
         }
 
         interface IWritable
         {
-            public void write();
+            public void Write();
         }
 
         interface IPlayable
         {
-            public void play();
+            public void Play();
         }
 
 
         class Musician : ISingable, IWritable, IPlayable
         {
-            public void play()
+            public void Play()
             {
                 Console.WriteLine("*Sound of Guitar...*");
             }
 
-            public void sing()
+            public void Sing()
             {
                 Console.WriteLine("lalala");
             }
 
-            public void write()
+            public void Write()
             {
                 Console.WriteLine("*Writing notes for a song...*");
             }
@@ -40,24 +40,34 @@ namespace Assignment3
 
         class Writer : IWritable
         {
-            public void write()
+            public void Write()
             {
                 Console.WriteLine("*Writing a story...*");
             }
         }
 
 
-        /*static void Main(string[] args)
+        static void Main(string[] args)
         {
             IWritable writer = new Writer();
-            writer.write();
+            writer.Write();
 
             IWritable musician = new Musician();
-            musician.write();
+            musician.Write();
 
-            ((Musician)musician).play();
-            ((Musician)musician).sing();
-        }*/
+            ((Musician)musician).Play();
+            ((Musician)musician).Sing();
+
+            if (musician is Musician)
+            {
+                Console.WriteLine("musician is Musician");
+            }
+
+            if (musician is ISingable)
+            {
+                Console.WriteLine("musician is ISingable");
+            }
+        }
     }
 
     class OCPDemonstration
@@ -126,6 +136,7 @@ namespace Assignment3
             bool operationResult = PaySource.Withdraw(CupOfCoffeePrice);
             if (operationResult)
                 Console.WriteLine("*You drink coffee...*");
+            
         }
 
        /* static void Main(string[] Args)
@@ -189,7 +200,7 @@ namespace Assignment3
             }
         }
 
-        public static void Main(string[] Args)
+        /*public static void Main(string[] Args)
         {
             AddEverything Adder = new AddEverything();
             Console.WriteLine(Adder.Add(12,22));
@@ -205,6 +216,6 @@ namespace Assignment3
             Console.WriteLine("v2: " + v2.ToString());
             Console.WriteLine("sum: " + (v1 + v2).ToString());
 
-        }
+        }*/
     }
 }
