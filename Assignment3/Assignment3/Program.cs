@@ -1,7 +1,73 @@
 ﻿using System;
 
-namespace Assignment3
-{
+namespace Assignment3 
+{ 
+    class ISPMistake
+    {
+
+        interface IArtPerson
+        {
+            public void Play();
+
+            public void Write();
+
+            public void Sing();
+        }
+
+
+        class Musician : IArtPerson
+        {
+
+            public void Play()
+            {
+                Console.WriteLine("*Sound of Guitar...*");
+            }
+
+            public void Sing()
+            {
+                Console.WriteLine("lalala");
+            }
+
+            public void Write()
+            {
+                Console.WriteLine("*Writing notes for a song...*");
+            }
+        }
+
+        class Writer : IArtPerson
+        {
+            public void Write()
+            {
+                Console.WriteLine("*Writing a story...*");
+            }
+
+            public void Sing()
+            {
+                // Writer can't sing
+            }
+            public void Play()
+            {
+                // Writer can't play
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            IArtPerson writer = new Writer();
+            writer.Write();
+
+            // Empty methods
+            writer.Play();
+            writer.Sing();
+
+            IArtPerson musician = new Musician();
+            musician.Write();
+
+            musician.Play();
+            musician.Sing();
+        }
+    }
+
     class ISPDemonstration
     {
         interface ISingable
@@ -66,6 +132,76 @@ namespace Assignment3
             if (musician is ISingable)
             {
                 Console.WriteLine("musician is ISingable");
+            }
+        }
+    }
+
+    class OCPMistake
+    {
+        abstract class MoneyHolder
+        {
+            public int Amount;
+
+            public MoneyHolder(int Amount)
+            {
+                this.Amount = Amount;
+            }
+
+        }
+
+        class Card : MoneyHolder
+        {
+            public readonly int PINCODE;
+
+            public Card(int Amount, int PINCODE) : base(Amount)
+            {
+                this.PINCODE = PINCODE;
+            }
+        }
+
+        class Cash : MoneyHolder
+        {
+            public Cash(int Amount) : base(Amount) { }
+        }
+
+        static int CupOfCoffeePrice = 30;
+        static void BuyCoffee(MoneyHolder PaySource)
+        {
+            if (PaySource is Card)
+            {
+                Card card = PaySource as Card;
+                Console.Write("PINCODE: ");
+                int pin = int.Parse(Console.ReadLine());
+                if (pin ==  card.PINCODE)
+                {
+                    if  (card.Amount > CupOfCoffeePrice)
+                    {
+                        card.Amount -= CupOfCoffeePrice;
+                        Console.WriteLine("*You drink coffee...*");
+
+                    } else Console.WriteLine("Not enough money");
+                } else Console.WriteLine("Wrong PINCODE");
+            } else if (PaySource is Cash)
+            {
+                Cash cash = PaySource as Cash;
+                if (cash.Amount > CupOfCoffeePrice)
+                {
+                    cash.Amount -= CupOfCoffeePrice;
+                    Console.WriteLine("*You drink coffee...*");
+
+                } else Console.WriteLine("Not enough money");
+            }
+        }
+
+        static void main(string[] args)
+        {
+            MoneyHolder[] MyFinances = new MoneyHolder[2];
+
+            MyFinances[0] = new Card(500,1234);
+            MyFinances[1] = new Cash(320);
+
+            foreach (MoneyHolder Holder in MyFinances) {
+                BuyCoffee(Holder);
             }
         }
     }
