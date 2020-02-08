@@ -28,6 +28,7 @@ namespace Assignment4
                 CupVolume = 350;
             }
         }
+
         struct Person
         {
             public string Name;
@@ -67,7 +68,7 @@ namespace Assignment4
             }
         }
 
-        static void Main(string[] args)
+        /*static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
 
@@ -112,9 +113,11 @@ namespace Assignment4
             cout(beforeDot);
             cout(afterDot);
 
+            // static constructor
             cout(Coffee.Price);
             cout(Coffee.CupVolume);
 
+            // basic threads
             ThreadStart Start = new ThreadStart(PrintInACycle);
 
             Thread ChildThread = new Thread(Start);
@@ -127,6 +130,6 @@ namespace Assignment4
                 Console.WriteLine("Main Thread. i = " + i);
                 Thread.Sleep(700);
             }
-        }
+        }*/
     }
 }
