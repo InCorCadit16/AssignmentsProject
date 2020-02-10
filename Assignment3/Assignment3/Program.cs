@@ -181,7 +181,8 @@ namespace Assignment3
 
                     } else Console.WriteLine("Not enough money");
                 } else Console.WriteLine("Wrong PINCODE");
-            } else if (PaySource is Cash)
+            } 
+            else if (PaySource is Cash)
             {
                 Cash cash = PaySource as Cash;
                 if (cash.Amount > CupOfCoffeePrice)
@@ -193,7 +194,7 @@ namespace Assignment3
             }
         }
 
-        static void main(string[] args)
+        static void Main(string[] args)
         {
             MoneyHolder[] MyFinances = new MoneyHolder[2];
 
@@ -286,6 +287,96 @@ namespace Assignment3
                 BuyCoffee(Holder);
             }
         }*/
+    }
+
+    class LSPMistake
+    {
+        class Rectangle
+        {
+            private int Width, Height;
+
+            public virtual void setWidth(int Width)
+            {
+                this.Width = Width;
+            }
+
+            public virtual void setHeight(int Height)
+            {
+                this.Height = Height;
+            }
+
+            public int getWidth() { return Width; }
+            public int getHeight() { return Height; }
+
+        }
+
+        class Square: Rectangle
+        {
+            public override void setWidth(int Width)
+            {
+                base.setWidth(Width);
+                base.setHeight(Width);
+            }
+
+            public override void setHeight(int Height)
+            {
+                base.setHeight(Height);
+                base.setWidth(Height);
+            }
+        }
+
+        static int Area(Rectangle rectangle)
+        {
+            rectangle.setWidth(5);
+            rectangle.setHeight(4);
+
+            return rectangle.getHeight() * rectangle.getWidth();
+        }
+
+
+    }
+
+    class LSPDemonstration
+    {
+        interface IGetArea
+        {
+            public double GetArea();
+        }
+
+
+        class Rectangle: IGetArea
+        {
+            public int Width, Height;
+
+            public double GetArea()
+            {
+                return Width * Height;
+            }
+
+        }
+
+        class Square : IGetArea
+        {
+            public int Side;
+        
+            public double GetArea()
+            {
+                return Side * Side;
+            }
+        }
+
+        static double Area(IGetArea Figure)
+        {
+            return Figure.GetArea();
+        }
+
+        static void Main(string[] args)
+        {
+            IGetArea figure = new Square { Side = 5 };
+            Area(figure);
+            figure = new Rectangle { Width = 5, Height = 4 };
+            Area(figure);
+        }
     }
 
     class Polymorphism
