@@ -19,7 +19,7 @@ namespace Orders
             Orders.Add(new Wings());
             Orders.Add(new Burger());
             Orders.Add(new Wings());
-            Restaurant = new IEmployee[4] { new Chef(), new Chef(), new Waiter(), new Waiter() };
+            Restaurant = new IEmployee[5] { new Chef(), new Chef(), new Waiter(), new Waiter(), new Chef() };
 
             while (Orders.Count != 0 || Ready.Count != 0 || !AllEmployeeAreFree())
             {

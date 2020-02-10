@@ -68,7 +68,7 @@ namespace Assignment4
             }
         }
 
-        /*static void Main(string[] args)
+        static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
 
@@ -130,11 +130,7 @@ namespace Assignment4
                 Console.WriteLine("Main Thread. i = " + i);
                 Thread.Sleep(700);
             }
-<<<<<<< HEAD
 
         }
-=======
-        }*/
->>>>>>> 735f14e86e6e4bda7ec0b5eba154a608dc83cf4a
     }
 }
