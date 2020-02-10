@@ -12,13 +12,14 @@ namespace Assignment5
             {
                 new Eagle() { Weigth = 4.7f, Wingspan = 1.2f, MaxSpeed = 75 },
                 new Pinguin() { Weigth = 6.6f, Wingspan = 1.5f, MaxSpeed = 7 },
-                new Eagle() { Weigth = 0.1f, Wingspan = 0.14f, MaxSpeed = 28 },
+                new Sparrow() { Weigth = 0.1f, Wingspan = 0.14f, MaxSpeed = 28 },
             };
-            foreach (Bird Bird in Birds)
+            foreach (Bird B in Birds)
             {
-                Bird.Eat();
-                Bird.Fly();
-            }
+                B.Eat();
+                B.Fly();
+                Console.WriteLine(B.Feeding);
+            };
         }
     }
 
@@ -47,7 +48,7 @@ namespace Assignment5
 
     abstract class Bird
     {
-        public static readonly FeedType Feeding;
+        public FeedType Feeding { get; protected set; }
         protected IFly FlyAbility;
         public float Weigth;
         public float Wingspan;
@@ -61,12 +62,11 @@ namespace Assignment5
     }
 
     class Eagle : Bird
-    {
-        public static readonly FeedType Feeding = FeedType.CARNIVOROUS;
-
+    { 
         public Eagle()
         {
             FlyAbility = new CanFly();
+            Feeding = FeedType.CARNIVOROUS;
         }
 
         public override void Eat()
@@ -79,10 +79,10 @@ namespace Assignment5
 
     class Pinguin : Bird
     {
-        public static readonly FeedType Feeding = FeedType.CARNIVOROUS;
 
         public Pinguin() {
-            FlyAbility = new NoFly();    
+            FlyAbility = new NoFly();
+            Feeding = FeedType.CARNIVOROUS;
         }
 
         public override void Eat()
@@ -93,11 +93,10 @@ namespace Assignment5
 
     class Sparrow : Bird
     {
-        public static readonly FeedType Feeding = FeedType.HERBIVOROUS;
-
         public Sparrow()
         {
             FlyAbility = new CanFly();
+            Feeding = FeedType.HERBIVOROUS;
         }
 
         public override void Eat()
