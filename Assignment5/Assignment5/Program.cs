@@ -152,12 +152,12 @@ namespace Assignment5
 
         protected override void UseDope()
         {
-            UseDope(1);
+            UseDope(3);
         }
 
         protected override void UseDope(int quantity)
         {
-            Stamina += 2 * quantity;
+            Stamina += 1.8f * quantity;
             Speed += 1.5f * quantity;
             Weigth += 0.3f * quantity;
             Strength += quantity;
@@ -191,7 +191,7 @@ namespace Assignment5
 
         protected override void UseDope()
         {
-            UseDope(1);
+            UseDope(2);
         }
 
         protected override void UseDope(int quantity)
