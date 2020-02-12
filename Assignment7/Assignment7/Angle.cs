@@ -5,7 +5,62 @@ namespace Assignment7
 {
     class Angle : IEnumerable, IComparable
     {
-        private int Degrees, Minutes, Seconds;
+        private int _degress, _minutes, _seconds;
+
+        private int Degrees {
+            get 
+            {
+                return _degress;
+            }
+            
+            set
+            {
+                _degress = value; 
+            }
+        }
+        private int Minutes
+        {
+            get
+            {
+                return _minutes;
+            }
+
+            set
+            {
+                if (value > 60)
+                {
+                    _minutes = value % 60;
+                    Degrees += value / 60;
+                } else if (value < 0)
+                {
+                    _minutes = value + 60;
+                    Degrees--;
+                } else
+                     _minutes = value;
+            }
+        }
+        private int Seconds
+        {
+            get
+            {
+                return _seconds;
+            }
+
+            set
+            {
+                if (value > 60)
+                {
+                    _seconds = value % 60;
+                    Minutes += value / 60;
+                }
+                else if (value < 0)
+                {
+                    _seconds = value + 60;
+                   Minutes--;
+                } else
+                    _seconds = value;
+            }
+        }
 
         public Angle(int Degrees) : this(Degrees, 0, 0) { }
 
@@ -32,36 +87,12 @@ namespace Assignment7
 
         public static Angle operator +(Angle lhs, Angle rhs)
         {
-            Angle A = new Angle(lhs.Degrees + rhs.Degrees, lhs.Minutes + rhs.Minutes, lhs.Seconds + rhs.Seconds);
-            if (A.Seconds >= 60)
-            {
-                A.Minutes += A.Seconds / 60;
-                A.Seconds %= 60;
-            }
-
-            if (A.Minutes >= 60)
-            {
-                A.Degrees += A.Minutes / 60;
-                A.Minutes %= 60;
-            }
-            return A;
+            return new Angle(lhs.Degrees + rhs.Degrees, lhs.Minutes + rhs.Minutes, lhs.Seconds + rhs.Seconds);
         }
 
         public static Angle operator -(Angle lhs, Angle rhs)
         {
-            Angle A = new Angle(lhs.Degrees - rhs.Degrees, lhs.Minutes - rhs.Minutes, lhs.Seconds - rhs.Seconds);
-            if (A.Seconds < 0)
-            {
-                A.Seconds += 60;
-                A.Minutes--;
-            }
-
-            if (A.Minutes < 0)
-            {
-                A.Minutes += 60;
-                A.Degrees--;
-            }
-            return A;
+            return new Angle(lhs.Degrees - rhs.Degrees, lhs.Minutes - rhs.Minutes, lhs.Seconds - rhs.Seconds);
         }
 
         public int this[int index]
@@ -94,18 +125,18 @@ namespace Assignment7
             return $"({Degrees}, {Minutes}, {Seconds})";
         }
 
-        public IEnumerator GetEnumerator()
+        /*public IEnumerator GetEnumerator()
         {
             return new AngleEnumerator(this);
-        }
+        }*/
 
-        /*public IEnumerator GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
             for (int i = 0; i < 3; i++)
             {
                 yield return this[i];
             }
-        }*/
+        }
 
         public int CompareTo(object obj)
         {

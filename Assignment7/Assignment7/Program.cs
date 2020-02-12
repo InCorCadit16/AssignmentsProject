@@ -13,8 +13,14 @@ namespace Assignment7
             var A4 = A1 - A2;
             Console.WriteLine($"A1 = {A1}");
             Console.WriteLine($"A2 = {A2}");
+            Console.WriteLine($"A1 == A2?  {A1 == A2}");
+            Console.WriteLine($"A1 != A2?  {A1 != A2}");
             Console.WriteLine($"A3 = A1 + A2 = {A3}");
             Console.WriteLine($"A4 = A1 - A2 = {A4}");
+
+            Console.WriteLine(A1[0]);
+            Console.WriteLine(A1[1]);
+            Console.WriteLine(A1[2]);
 
             foreach (int value in A1)
             {
