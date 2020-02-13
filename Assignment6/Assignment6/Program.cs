@@ -80,11 +80,11 @@ namespace Assignment6
             AllTwice(arr);
             PrintArr(arr);
 
-            int[,] Multi = { { 12, 75, 6 },{ 5, 94, 28 },{ 222, 54, 23 } };
+            int[,] Multi = new int[,]{ { 12, 75, 6 },{ 5, 94, 28 },{ 222, 54, 23 } };
             Console.WriteLine("\n");
             Console.WriteLine(Average(Multi));
 
-            string[][] Jagged = { new string[] { "Microsoft", "Apple", "Google" }, new string[] { "Simple", "Nike", "" } };
+            string[][] Jagged = { new string[] { "Microsoft", "Apple", "Google" }, new string[] { "Simple", "Nike", "", "Reebok"} };
             AddIncToEach(Jagged);
             for (int i = 0; i < Jagged.Length; i++)
             {
@@ -109,7 +109,7 @@ namespace Assignment6
             string ike = MyStr.Substring(13, 3);
             Console.WriteLine(@"'ike' substring: " + ike);
             string withFree = MyStr.Insert(7, "Free ");
-            Console.WriteLine(@"with 'Free': " + withFree);
+            Console.WriteLine($"with 'Free': {withFree}");
             Console.WriteLine("\t \n Heey \n \t".Trim());
 
             StringBuilder sb = new StringBuilder("Help to cure");
@@ -119,14 +119,26 @@ namespace Assignment6
             Console.WriteLine(sb);
 
 
-            string[] Names = "Samuel-Jack-Alex-Simon".Split('-');
+            string[] Names = "-Samuel-Jack-Alex-Simon".Split('-');
             foreach(string name in Names)
             {
                 Console.WriteLine(name);
             }
             Console.WriteLine();
-            string NamesInColumn= String.Join("\n", Names);
+            string NamesInColumn= String.Join(" : ", Names);
             Console.WriteLine(NamesInColumn);
+
+            var a = "abc";
+            var b = "abc";
+            Console.WriteLine(a != b);
+
+
+
+            (int row, int column) = getTwoInts();
+            Console.WriteLine(row);
+            Console.WriteLine(column);
         }
+
+        static (int row, int column) getTwoInts() => (8, 10);
     }
 }
