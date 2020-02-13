@@ -19,6 +19,8 @@ namespace Assignment1
             Console.WriteLine(s3);
 
             int l = 15;
+
+            Console.WriteLine(l);
         }
     }
 }
