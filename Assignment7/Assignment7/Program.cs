@@ -17,6 +17,9 @@ namespace Assignment7
             Console.WriteLine($"A1 != A2?  {A1 != A2}");
             Console.WriteLine($"A3 = A1 + A2 = {A3}");
             Console.WriteLine($"A4 = A1 - A2 = {A4}");
+            Console.WriteLine($"A1 * 5 = {A1 * 5}");
+            Console.WriteLine($"A2 / 3 = {A2 / 3}");
+            Console.WriteLine($"A2 / A1= {A2 / A1}");
 
             Console.WriteLine(A1[0]);
             Console.WriteLine(A1[1]);

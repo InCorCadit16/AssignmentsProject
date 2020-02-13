@@ -15,7 +15,10 @@ namespace Assignment7
             
             set
             {
-                _degress = value; 
+                if (value > 360 | (value == 360 & (_minutes != 0 | _seconds != 0)))
+                    _degress = value - 360;
+                else
+                    _degress = value; 
             }
         }
         private int Minutes
@@ -68,9 +71,9 @@ namespace Assignment7
 
         public Angle(int Degrees, int Minutes, int Seconds)
         {
-            this.Degrees = Degrees;
-            this.Minutes = Minutes;
             this.Seconds = Seconds;
+            this.Minutes = Minutes;
+            this.Degrees = Degrees;
         }
 
         public static bool operator ==(Angle lhs, Angle rhs)
@@ -93,6 +96,26 @@ namespace Assignment7
         public static Angle operator -(Angle lhs, Angle rhs)
         {
             return new Angle(lhs.Degrees - rhs.Degrees, lhs.Minutes - rhs.Minutes, lhs.Seconds - rhs.Seconds);
+        }
+
+        public static Angle operator *(Angle lhs, int multiple)
+        {
+            return new Angle(lhs.Degrees * multiple, lhs.Minutes * multiple, lhs.Seconds * multiple);
+        }
+
+        public static Angle operator *(int multiple, Angle lhs)
+        {
+            return new Angle(lhs.Degrees * multiple, lhs.Minutes * multiple, lhs.Seconds * multiple);
+        }
+
+        public static Angle operator /(Angle lhs, int devisor)
+        {
+            return new Angle(lhs.Degrees / devisor, lhs.Minutes / devisor, lhs.Seconds / devisor);
+        }
+
+        public static double operator /(Angle lhs,  Angle rhs)
+        {
+            return (double) (lhs.Degrees * 3600 + lhs.Minutes * 60 + lhs.Seconds) / (rhs.Degrees * 3600 + rhs.Minutes * 60 + rhs.Seconds);
         }
 
         public int this[int index]
