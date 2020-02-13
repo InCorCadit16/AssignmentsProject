@@ -17,6 +17,8 @@ namespace Assignment1
 
             string s3 = "modified string s3";
             Console.WriteLine(s3);
+
+            String s5 = "new string";
         }
     }
 }
