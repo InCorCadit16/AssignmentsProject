@@ -8,8 +8,8 @@ namespace Assignment7
     {
         static void Main(string[] args)
         {
-            var A1 = new Angle(3, 36, 53);
-            var A2 = new Angle(4,27,45);
+            var A1 = new Angle(30,45,61);
+            var A2 = new Angle(45,30,30);
             var A3 = A1 + A2;
             var A4 = A1 - A2;
             Console.WriteLine($"A1 = {A1}");
