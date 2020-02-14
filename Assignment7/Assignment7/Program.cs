@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Assignment7
 {
@@ -57,6 +58,11 @@ namespace Assignment7
             foreach (Angle A in Arr)
             {
                 Console.WriteLine(A);
+            }
+
+            foreach (var item in A1)
+            {
+
             }
         }
     }

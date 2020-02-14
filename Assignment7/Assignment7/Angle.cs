@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Assignment7
 {
-    class Angle : IEnumerable, IComparable
+    class Angle :  IComparable
     {
         private int _degress, _minutes, _seconds;
 
@@ -17,7 +18,10 @@ namespace Assignment7
             {
                 if (value > 360 | (value == 360 & (_minutes != 0 | _seconds != 0)))
                     _degress = value - 360;
-                else
+                else if (value < 0)
+                {
+                    _degress = 360 - value;
+                } else
                     _degress = value; 
             }
         }
@@ -105,17 +109,28 @@ namespace Assignment7
 
         public static Angle operator *(int multiple, Angle lhs)
         {
-            return new Angle(lhs.Degrees * multiple, lhs.Minutes * multiple, lhs.Seconds * multiple);
+            return lhs * multiple;
         }
 
         public static Angle operator /(Angle lhs, int devisor)
         {
-            return new Angle(lhs.Degrees / devisor, lhs.Minutes / devisor, lhs.Seconds / devisor);
+            int value = (lhs.Degrees * 3600 + lhs.Minutes * 60 + lhs.Seconds) / devisor;
+            return new Angle(value/3600, (value % 3600)/60, ((value%3600)%60));
         }
 
         public static double operator /(Angle lhs,  Angle rhs)
         {
             return (double) (lhs.Degrees * 3600 + lhs.Minutes * 60 + lhs.Seconds) / (rhs.Degrees * 3600 + rhs.Minutes * 60 + rhs.Seconds);
+        }
+
+        private int toSeconds()
+        {
+            return Degrees * 3600 + Minutes * 60 + Seconds;
+        }
+
+        private static Angle toAngle(int Seconds)
+        {
+            return new Angle(Seconds / 3600, (Seconds % 3600) / 60, ((Seconds % 3600) % 60));
         }
 
         public int this[int index]
@@ -148,12 +163,27 @@ namespace Assignment7
             return $"({Degrees}, {Minutes}, {Seconds})";
         }
 
-        /*public IEnumerator GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
             return new AngleEnumerator(this);
-        }*/
+        }
 
-        public IEnumerator GetEnumerator()
+        public IEnumerable GetEnumerator2()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                yield return this[i];
+            }
+        }
+        public IEnumerable<int> GetEnumerator3()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                yield return this[i];
+            }
+        }
+
+        public IEnumerator GetEnumerator4()
         {
             for (int i = 0; i < 3; i++)
             {
