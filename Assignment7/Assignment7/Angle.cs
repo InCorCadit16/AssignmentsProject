@@ -6,68 +6,47 @@ namespace Assignment7
 {
     class Angle :  IComparable
     {
-        private int _degress, _minutes, _seconds;
+        public const int SEC_IN_DEG = 3600; 
+        public const int SEC_IN_MIN = 60;
+        public const int SEC_IN_360 = 360 * 3600;
 
-        private int Degrees {
-            get 
-            {
-                return _degress;
-            }
-            
-            set
-            {
-                if (value > 360 | (value == 360 & (_minutes != 0 | _seconds != 0)))
-                    _degress = value - 360;
-                else if (value < 0)
-                {
-                    _degress = 360 - value;
-                } else
-                    _degress = value; 
-            }
+        private int _quantityInSeconds;
+
+        private int Degrees 
+        { 
+            get { return QuantityInSeconds / SEC_IN_DEG; }
+            set { QuantityInSeconds = (value - Degrees) * SEC_IN_DEG; }
         }
         private int Minutes
         {
-            get
-            {
-                return _minutes;
-            }
-
-            set
-            {
-                if (value > 60)
-                {
-                    _minutes = value % 60;
-                    Degrees += value / 60;
-                } else if (value < 0)
-                {
-                    _minutes = value + 60;
-                    Degrees--;
-                } else
-                     _minutes = value;
-            }
+            get { return (QuantityInSeconds % SEC_IN_DEG) / SEC_IN_MIN; }
+            set { QuantityInSeconds = (value - Minutes) * SEC_IN_MIN; }
         }
-        private int Seconds
+
+        private int Seconds { 
+            get { return (QuantityInSeconds % SEC_IN_DEG) % SEC_IN_MIN; }
+            set { QuantityInSeconds = (value - Seconds); }
+        }
+
+        private int QuantityInSeconds
         {
             get
             {
-                return _seconds;
+                return _quantityInSeconds;
             }
 
             set
             {
-                if (value > 60)
-                {
-                    _seconds = value % 60;
-                    Minutes += value / 60;
-                }
+                if (value > SEC_IN_360)
+                    _quantityInSeconds = value - SEC_IN_360;
                 else if (value < 0)
-                {
-                    _seconds = value + 60;
-                   Minutes--;
-                } else
-                    _seconds = value;
+                    _quantityInSeconds = SEC_IN_360 + value;
+                else
+                    _quantityInSeconds = value;
             }
         }
+
+        
 
         public Angle(int Degrees) : this(Degrees, 0, 0) { }
 
@@ -75,16 +54,12 @@ namespace Assignment7
 
         public Angle(int Degrees, int Minutes, int Seconds)
         {
-            this.Seconds = Seconds;
-            this.Minutes = Minutes;
-            this.Degrees = Degrees;
+            this.QuantityInSeconds = Degrees * SEC_IN_DEG + Minutes * SEC_IN_MIN + Seconds;
         }
 
         public static bool operator ==(Angle lhs, Angle rhs)
         {
-            return lhs.Degrees == rhs.Degrees &&
-                     lhs.Minutes == rhs.Minutes &&
-                     lhs.Seconds == rhs.Seconds;
+            return lhs.QuantityInSeconds == rhs.QuantityInSeconds;
         }
 
         public static bool operator !=(Angle lhs, Angle rhs)
@@ -94,17 +69,17 @@ namespace Assignment7
 
         public static Angle operator +(Angle lhs, Angle rhs)
         {
-            return new Angle(lhs.Degrees + rhs.Degrees, lhs.Minutes + rhs.Minutes, lhs.Seconds + rhs.Seconds);
+            return toAngle(lhs.QuantityInSeconds + rhs.QuantityInSeconds);
         }
 
         public static Angle operator -(Angle lhs, Angle rhs)
         {
-            return new Angle(lhs.Degrees - rhs.Degrees, lhs.Minutes - rhs.Minutes, lhs.Seconds - rhs.Seconds);
+            return toAngle(lhs.QuantityInSeconds - rhs.QuantityInSeconds);
         }
 
         public static Angle operator *(Angle lhs, int multiple)
         {
-            return new Angle(lhs.Degrees * multiple, lhs.Minutes * multiple, lhs.Seconds * multiple);
+            return toAngle(lhs.QuantityInSeconds + multiple);
         }
 
         public static Angle operator *(int multiple, Angle lhs)
@@ -114,23 +89,17 @@ namespace Assignment7
 
         public static Angle operator /(Angle lhs, int devisor)
         {
-            int value = (lhs.Degrees * 3600 + lhs.Minutes * 60 + lhs.Seconds) / devisor;
-            return new Angle(value/3600, (value % 3600)/60, ((value%3600)%60));
+            return toAngle(lhs.QuantityInSeconds/devisor);
         }
 
         public static double operator /(Angle lhs,  Angle rhs)
         {
-            return (double) (lhs.Degrees * 3600 + lhs.Minutes * 60 + lhs.Seconds) / (rhs.Degrees * 3600 + rhs.Minutes * 60 + rhs.Seconds);
+            return (double) lhs.QuantityInSeconds / rhs.QuantityInSeconds;
         }
 
-        private int toSeconds()
+        private static Angle toAngle(int QuantityInSeconds)
         {
-            return Degrees * 3600 + Minutes * 60 + Seconds;
-        }
-
-        private static Angle toAngle(int Seconds)
-        {
-            return new Angle(Seconds / 3600, (Seconds % 3600) / 60, ((Seconds % 3600) % 60));
+            return new Angle(QuantityInSeconds / SEC_IN_DEG, (QuantityInSeconds % SEC_IN_DEG) / SEC_IN_MIN, ((QuantityInSeconds % SEC_IN_DEG) % SEC_IN_MIN));
         }
 
         public int this[int index]

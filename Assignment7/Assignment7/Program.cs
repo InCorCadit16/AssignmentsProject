@@ -59,11 +59,6 @@ namespace Assignment7
             {
                 Console.WriteLine(A);
             }
-
-            foreach (var item in A1)
-            {
-
-            }
         }
     }
 
