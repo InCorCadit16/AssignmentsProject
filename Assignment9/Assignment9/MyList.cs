@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace Assignment9
 {
-    public class MyList<T> : IEnumerable
+    public class MyList<T> : IEnumerable where T : new()
     {
         T[] Items;
       
@@ -14,6 +14,7 @@ namespace Assignment9
 
         public MyList(int Size)
         {
+           
             Items = new T[Size];
             Count = 0;
         }
