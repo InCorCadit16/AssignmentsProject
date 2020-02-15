@@ -3,18 +3,18 @@ using System.Collections;
 
 namespace Assignment9
 {
-    public class MyList<T> : IEnumerable where T : new()
+    public class MyList<T> : IEnumerable
     {
         T[] Items;
-      
+
         public int Count { get; private set; }
-        public int Capacity {  get { return Items.Length; } }
+        public int Capacity { get { return Items.Length; } }
 
         public MyList() : this(4) { }
 
         public MyList(int Size)
         {
-           
+
             Items = new T[Size];
             Count = 0;
         }
@@ -56,14 +56,14 @@ namespace Assignment9
 
         public T this[int index]
         {
-            get 
+            get
             {
                 if (index > Count || index < 0)
                     throw new IndexOutOfRangeException($"Trying to access value at Index {index} when Size is {Count}");
 
                 return Items[index];
             }
-            set 
+            set
             {
                 if (index > Count | index < 0)
                     throw new IndexOutOfRangeException($"Trying to set value at Index {index} when Size is {Count}");
