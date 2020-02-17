@@ -27,6 +27,10 @@ namespace Assignment9
             User User = new User("User_1", "user@gmail.com","fNd34Rzw");
             IRepository<User> UserRepository = new Repository<User>();
             UserRepository.Insert(User);
+
         }
     }
+
+   
+   
 }

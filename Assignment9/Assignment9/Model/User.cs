@@ -49,6 +49,9 @@ namespace Assignment9.Model
             this.Nickname = Nickname;
             this.Email = Email;
             this.Password = Password;
+            Role = Role.User;
+            Articles = new List<Article>();
+            FavouriteTopics = new List<Topic>();
         }
 
         public int CompareTo(object obj)
