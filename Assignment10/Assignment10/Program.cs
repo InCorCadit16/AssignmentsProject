@@ -39,9 +39,8 @@ namespace Assignment10
                                 .Select(n => n + 3)
                                 .ToList();
 
-
+            // LINQ using commands
             SomeList = NewRandomArray();
-
 
             var Matching =
                 from val in SomeList

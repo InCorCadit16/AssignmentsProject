@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Assignment9.Model
 {
-    class User : IEntity, IComparable
+    class User : IEntity, IComparable<User>
     {
         private Guid _id;
         public string ID { get { return _id.ToString(); } }
@@ -54,9 +54,9 @@ namespace Assignment9.Model
             FavouriteTopics = new List<Topic>();
         }
 
-        public int CompareTo(object obj)
+        public int CompareTo(User usr)
         {
-            return this.Rating.CompareTo(((User)obj).Rating);
+            return this.Rating.CompareTo(usr.Rating);
         }
     }
 }

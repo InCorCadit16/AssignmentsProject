@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Assignment9.Model
 {
-    class Article : IEntity, IComparable
+    class Article : IEntity, IComparable<Article>, IEqualityComparer<Article>
     {
         private Guid _id;
         public string ID { get { return _id.ToString(); } }
@@ -37,9 +37,19 @@ namespace Assignment9.Model
             }
         }
 
-        public int CompareTo(object obj)
+        public int CompareTo(Article art)
         {
-            return this.Rating.CompareTo(((Article)obj).Rating);
+            return this.Rating.CompareTo(art.Rating);
+        }
+
+        public bool Equals(Article x, Article y)
+        {
+            return x.ID == y.ID;
+        }
+
+        public int GetHashCode(Article obj)
+        {
+            return obj.ID.GetHashCode();
         }
     }
 }
