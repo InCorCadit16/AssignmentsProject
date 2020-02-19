@@ -5,9 +5,10 @@ using System.Text;
 
 namespace Assignment9.Repositories
 {
-    interface IRepository<T> where T : class, IEntity
+    interface IRepository<T> where T : Entity
     {
         IEnumerable<T> GetAll();
+
         T GetById(string id);
 
         void Insert(T obj);

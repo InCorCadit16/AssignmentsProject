@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assignment9.Repositories
 {
-    class Repository<T> : IRepository<T> where T : class, IEntity
+    class Repository<T> : IRepository<T> where T : Entity
     {
         List<T> _context;
 

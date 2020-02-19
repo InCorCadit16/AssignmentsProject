@@ -38,7 +38,7 @@ namespace Assignment7
             set
             {
                 if (value > SEC_IN_360)
-                    _quantityInSeconds = value - SEC_IN_360;
+                    _quantityInSeconds = value % SEC_IN_360;
                 else if (value < 0)
                     _quantityInSeconds = SEC_IN_360 + value;
                 else

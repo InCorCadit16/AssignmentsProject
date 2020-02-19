@@ -4,11 +4,8 @@ using System.Text;
 
 namespace Assignment9.Model
 {
-    class Review : IEntity
+    class Review : Entity
     {
-        private Guid _id;
-        public string ID { get { return _id.ToString(); } }
-
         public Article SourceArticle { get; }
 
         public string Comment { get; private set; }

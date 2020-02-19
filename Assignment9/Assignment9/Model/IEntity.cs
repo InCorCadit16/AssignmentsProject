@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Assignment9.Model
 {
-    interface IEntity
+    abstract class Entity
     {
         public string ID { get; }
     }

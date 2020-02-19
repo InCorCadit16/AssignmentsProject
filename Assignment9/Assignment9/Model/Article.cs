@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Assignment9.Model
 {
-    class Article : IEntity, IComparable<Article>, IEqualityComparer<Article>
+    class Article : Entity, IComparable<Article>, IEqualityComparer<Article>
     {
-        private Guid _id;
-        public string ID { get { return _id.ToString(); } }
 
         public string Title { get; private set; }
 

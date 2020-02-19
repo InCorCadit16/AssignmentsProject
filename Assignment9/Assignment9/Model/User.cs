@@ -4,10 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Assignment9.Model
 {
-    class User : IEntity, IComparable<User>
+    class User : Entity, IComparable<User>
     {
-        private Guid _id;
-        public string ID { get { return _id.ToString(); } }
 
         public string Nickname { get; private set; }
 
@@ -45,7 +43,6 @@ namespace Assignment9.Model
 
         public User(string Nickname, string Email, string Password)
         {
-            _id = Guid.NewGuid();
             this.Nickname = Nickname;
             this.Email = Email;
             this.Password = Password;
