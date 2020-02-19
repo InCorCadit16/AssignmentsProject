@@ -32,6 +32,7 @@ namespace Assignment9
             Parent parent = new Child();
             IEnumerable<Parent> I = new List<Child>();
             //MyList<Parent> Lst = (MyList<Parent>) I;
+            
 
         }
 
