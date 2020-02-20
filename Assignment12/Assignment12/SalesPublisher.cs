@@ -9,9 +9,9 @@ namespace PublisherSolution
 
         public void OnNewSaleStarted(SalesEventArgs args)
         {
-            Console.WriteLine("Publisher Received Following Sale:");
+            Console.WriteLine("\nPublisher Received Following Sale:");
             Console.WriteLine(args);
-
+            
             SalesEventHandler(this, args);
         }
     }
