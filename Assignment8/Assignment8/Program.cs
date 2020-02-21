@@ -1,6 +1,7 @@
 ﻿#define LONGSTR
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -30,8 +31,7 @@ namespace Assignment8
             }
             catch (LongStringException lse)
             {
-                Console.WriteLine(lse.Message);
-
+                Debug.Print(lse.Message);
                 #if LONGSTR
                     Console.WriteLine("Long String Processed");
                 #endif
@@ -54,7 +54,7 @@ namespace Assignment8
                 }
             } finally
             {
-                Writer.Dispose();
+                Writer?.Dispose();
             }
 
             var CustomData = new { id = 11433523, Info = "Danger to health" };
