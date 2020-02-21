@@ -7,7 +7,7 @@ namespace PublisherSolution
         public event EventHandler<SalesEventArgs> SalesEventHandler;
         
 
-        public void OnNewSaleStarted(SalesEventArgs args)
+        public virtual void OnNewSaleStarted(SalesEventArgs args)
         {
             Console.WriteLine("\nPublisher Received Following Sale:");
             Console.WriteLine(args);

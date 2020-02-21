@@ -1,29 +1,27 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using PublisherSolution;
 
-
-namespace ReceiversProject
+namespace ReceiverSolution
 {
-    public class Starter
+    class Starter
     {
         static SalesPublisher Publisher;
         static void Main(string[] args)
         {
             Publisher = new SalesPublisher();
-          
 
             var SmsService = new SmsService();
             var EmailService = new EmailService();
 
-            
+
             Publisher.SalesEventHandler += SmsService.SaleStarted;
             Publisher.SalesEventHandler += EmailService.SaleStarted;
 
             char c = default;
-            while (c != '0') 
+            while (c != '0')
             {
                 if (c == '1')
                 {
@@ -37,7 +35,7 @@ namespace ReceiversProject
                 c = char.Parse(Console.ReadLine());
             }
 
-            // Add WeakEventHandler
+            WeakEventManager<SalesPublisher, SalesEventArgs>.AddHandler(Publisher, "New Email", SmsService.SaleStarted);
 
             SmsService = null;
 
@@ -68,7 +66,5 @@ namespace ReceiversProject
 
             Publisher.OnNewSaleStarted(Sale);
         }
-        
-     
     }
 }
