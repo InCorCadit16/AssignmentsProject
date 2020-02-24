@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <StartupObject>Assignment13.Runtime</StartupObject>
+    <StartupObject>Assignment13.Once</StartupObject>
   </PropertyGroup>
 
 </Project>

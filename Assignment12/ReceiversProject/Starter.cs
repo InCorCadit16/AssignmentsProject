@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Windows;
 using PublisherSolution;
+
 
 namespace ReceiversProject
 {
@@ -12,6 +10,7 @@ namespace ReceiversProject
         static void Main(string[] args)
         {
             Publisher = new SalesPublisher();
+          
 
             var SmsService = new SmsService();
             var EmailService = new EmailService();
@@ -35,7 +34,7 @@ namespace ReceiversProject
                 c = char.Parse(Console.ReadLine());
             }
 
-            
+            // Add WeakEventHandler
 
             SmsService = null;
 
