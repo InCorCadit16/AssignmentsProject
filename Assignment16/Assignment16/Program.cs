@@ -47,7 +47,7 @@ namespace Assignment16
 
             Car Lancer = CarFactory.CreateCar("Mitsubishi", "Lancer", CarcassType.Coupe, 180, 27.5f);
 
-            Car KiaRioXline = CarFactory.CreateCar("KIA", "Rio", CarcassType.SUV, default, default, 2.2f);
+            Car KiaRioXline = CarFactory.CreateCar("KIA", "Rio", CarcassType.SUV, 200, 29, 2.2f);
             KiaRioXline.SetDimensions(1.45f, 2.15f, 1.55f);
 
             KiaRioXline.ChangeWheels(new Wheel() { Diameter = 26.5f, Manufacturer = "Somebody", PatternDepth = 1.5f });
