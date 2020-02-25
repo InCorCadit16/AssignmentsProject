@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace Assignment16.Singleton
 {
-    class UserValidator
+    public class UserValidator
     {
-        public List<User> Validate(int minAge = 0, int maxAge = int.MaxValue, Status minStatus = Status.Beginner, string orderBy = "Id")
+        public static List<User> Validate(int minAge = 0, int maxAge = int.MaxValue, Status minStatus = Status.Beginner, string orderBy = "Id")
         {
             List<int> list = new List<int>();
 

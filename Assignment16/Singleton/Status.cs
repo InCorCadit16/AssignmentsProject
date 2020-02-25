@@ -4,5 +4,5 @@ using System.Text;
 
 namespace Assignment16.Singleton
 {
-    enum Status { Beginner, Experienced, Professional }
+    public enum Status { Beginner, Experienced, Professional }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Assignment16.Singleton
 {
-    class DataSingleton
+    public class DataSingleton
     {
         static readonly Lazy<DataSingleton> _singleton = new Lazy<DataSingleton>(() => new DataSingleton(), true);
 
