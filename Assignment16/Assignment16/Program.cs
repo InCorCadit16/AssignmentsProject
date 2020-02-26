@@ -9,7 +9,7 @@ namespace Assignment16
     {
         static void Main(string[] args)
         {
-            FactoryExample();
+            SingletonExample();
         }
 
         static void SingletonExample()
