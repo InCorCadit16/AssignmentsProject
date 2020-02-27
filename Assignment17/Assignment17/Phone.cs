@@ -8,9 +8,15 @@ namespace Assignment17
         ICallable caller;
         IFaceCallable faceCaller;
 
-        public abstract void Call(long phoneNumber);
+        public void Call(long phoneNumber)
+        {
+            caller.Call(phoneNumber);
+        }
 
-        public abstract void SendSMS(string text);
+        public void SendSMS(string text)
+        {
+            smsSender.sendSms(text);
+        }
 
         public abstract void FaceCall(long phoneNumber);
 
@@ -42,4 +48,10 @@ namespace Assignment17
             smsSender.sendSms(text);
         }
     }
+
+    class Sellphone : Phone 
+    {
+    
+    }
+
 }
