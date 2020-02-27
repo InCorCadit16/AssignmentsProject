@@ -13,7 +13,7 @@ namespace Assignment17
     {
         public void Call(long phone)
         {
-            Console.WriteLine($"Calling {phone} using 2G networks...");
+            Console.WriteLine($"Calling {phone} using 2G networks...\n");
         }
     }
 
@@ -21,7 +21,7 @@ namespace Assignment17
     {
         public void Call(long phone)
         {
-            Console.WriteLine($"Calling {phone} using 4G networks...");
+            Console.WriteLine($"Calling {phone} using 4G networks...\n");
         }
     }
 
@@ -29,7 +29,7 @@ namespace Assignment17
     {
         public void Call(long phone)
         {
-            Console.WriteLine($"Calling {phone} using cable...");
+            Console.WriteLine($"Calling {phone} using cable...\n");
         }
     }
 }

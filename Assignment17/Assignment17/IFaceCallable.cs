@@ -13,7 +13,7 @@ namespace Assignment17
     {
         public void FaceCall(long phone)
         {
-            Console.WriteLine($"Calling {phone} using Face Call");
+            Console.WriteLine($"Calling {phone} using Face Call\n");
         }
     }
 
@@ -21,7 +21,7 @@ namespace Assignment17
     {
         public void FaceCall(long phone)
         {
-            Console.WriteLine("This device doesn\'t support Face Call");
+            Console.WriteLine("This device doesn\'t support Face Call\n");
         }
     }
 
