@@ -14,7 +14,7 @@ namespace Assignment17
             caller.Call(phoneNumber);
         }
 
-        public abstract void PrepareUIForCall();
+        protected abstract void PrepareUIForCall();
 
         public void SendSMS(string text)
         {
@@ -43,7 +43,7 @@ namespace Assignment17
             return "Basic Modern Smarphone";
         }
 
-        public override void PrepareUIForCall()
+        protected override void PrepareUIForCall()
         {
             Console.WriteLine("Switching to call screen");
         }
@@ -64,7 +64,7 @@ namespace Assignment17
             return "Basic phone from 2007";
         }
 
-        public override void PrepareUIForCall()
+        protected override void PrepareUIForCall()
         {
             Console.WriteLine("Show called number on screen");
         }
@@ -84,7 +84,7 @@ namespace Assignment17
             return "Stational phone (like your grandmother haves)";
         }
 
-        public override void PrepareUIForCall()
+        protected override void PrepareUIForCall()
         {
             Console.WriteLine("Make weird noises");
         }
