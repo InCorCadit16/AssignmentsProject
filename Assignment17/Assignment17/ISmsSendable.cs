@@ -11,7 +11,7 @@ namespace Assignment17
     {
         public void sendSms(string text)
         {
-            Console.WriteLine($"send sms using 2G network. Text: {text}");
+            Console.WriteLine($"send sms using 2G network. Text: {text}\n");
         }
     }
 
@@ -19,7 +19,7 @@ namespace Assignment17
     {
         public void sendSms(string text)
         {
-            Console.WriteLine($"send sms using 4G network. Text: {text}");
+            Console.WriteLine($"send sms using 4G network. Text: {text}\n");
         }
     }
 
@@ -27,7 +27,7 @@ namespace Assignment17
     {
         public void sendSms(string text)
         {
-            Console.WriteLine($"Device does not support sms");
+            Console.WriteLine($"Device does not support sms\n");
         }
     }
 }

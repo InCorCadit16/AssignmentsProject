@@ -4,27 +4,38 @@ namespace Assignment17
 {
     abstract class Phone
     {
-        ISmsSendable smsSender;
-        ICallable caller;
-        IFaceCallable faceCaller;
+        public ISmsSendable smsSender { get; set; }
+        public ICallable caller { get; set; }
+        public IFaceCallable faceCaller { get; set; }
 
-        public abstract void Call(long phoneNumber);
+        public void Call(long phoneNumber)
+        {
+            PrepareUIForCall();
+            caller.Call(phoneNumber);
+        }
 
-        public abstract void SendSMS(string text);
+        public abstract void PrepareUIForCall();
 
-        public abstract void FaceCall(long phoneNumber);
+        public void SendSMS(string text)
+        {
+            smsSender.sendSms(text);
+        }
+
+        public void FaceCall(long phoneNumber)
+        {
+            faceCaller.FaceCall(phoneNumber);
+        }
 
         public abstract string DisplayInfo();
     }
 
     class Smartphone : Phone
     {
-        ISmsSendable smsSender = new FastWirelessSms();
-        ICallable caller = new FastWirelessCall();
-        IFaceCallable faceCaller = new BasicFaceCall();
-        public override void Call(long phoneNumber)
+        public Smartphone()
         {
-            caller.Call(phoneNumber);
+            smsSender = new FastWirelessSms();
+            faceCaller = new BasicFaceCall();
+            caller = new FastWirelessCall();
         }
 
         public override string DisplayInfo()
@@ -32,14 +43,50 @@ namespace Assignment17
             return "Basic Modern Smarphone";
         }
 
-        public override void FaceCall(long phoneNumber)
+        public override void PrepareUIForCall()
         {
-            faceCaller.FaceCall(phoneNumber);
+            Console.WriteLine("Switching to call screen");
+        }
+    }
+
+    class Sellphone : Phone
+    {
+
+        public Sellphone()
+        {
+            smsSender = new WirelessSms();
+            faceCaller = new NoFaceCall();
+            caller = new WirelessCall();
         }
 
-        public override void SendSMS(string text)
+        public override string DisplayInfo()
         {
-            smsSender.sendSms(text);
+            return "Basic phone from 2007";
+        }
+
+        public override void PrepareUIForCall()
+        {
+            Console.WriteLine("Show called number on screen");
+        }
+    }
+
+    class StationalPhone : Phone
+    {
+        public StationalPhone()
+        {
+            smsSender = new NoPhoneSms();
+            faceCaller = new NoFaceCall();
+            caller = new CableCall();
+        }
+
+        public override string DisplayInfo()
+        {
+            return "Stational phone (like your grandmother haves)";
+        }
+
+        public override void PrepareUIForCall()
+        {
+            Console.WriteLine("Make weird noises");
         }
     }
 }
