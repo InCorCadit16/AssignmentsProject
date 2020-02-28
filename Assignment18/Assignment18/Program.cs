@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignment18.CoffeeFacade;
+using System;
 
 namespace Assignment18
 {
@@ -16,6 +17,17 @@ namespace Assignment18
             connector.Connect("linkedin.com");
             connector.Reload();
 
+            CoffeMachineFacade coffeeMachine = new CoffeMachineFacade();
+
+            coffeeMachine.Americano();
+
+            coffeeMachine.Frappe();
+
+            coffeeMachine.HotChocolate();
+
+            coffeeMachine.SelfCleare();
+
+            coffeeMachine.HotChocolate();
         }
     }
 }
