@@ -4,18 +4,18 @@ namespace ServiceLocator
 {
     public class ServiceConsumer
     {
-        public IService CurrentService { get; set; };
+        public IService CurrentService { get; set; }
 
         static void Main(string[] args)
         {
-            ServiceConsumer Consumer = new ServiceConsumer();
+            ServiceConsumer consumer = new ServiceConsumer();
 
             ServiceLocator.RegisterService(new ServiceA());
             ServiceLocator.RegisterService(new ServiceB());
 
-            Consumer.CurrentService = ServiceLocator.Provide<ServiceA>();
+            consumer.CurrentService = ServiceLocator.Provide<ServiceA>();
 
-            Consumer.CurrentService.DoSomeWork();
+            consumer.CurrentService.DoSomeWork();
         }
     }
 }

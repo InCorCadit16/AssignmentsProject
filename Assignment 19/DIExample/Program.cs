@@ -12,14 +12,16 @@ namespace DIExample
     {
         static void Main(string[] args)
         {
-           var serviceContainer = new UnityContainer();
+            var productContainer = new UnityContainer();
+            productContainer.RegisterType<MarketProduct>();
+            productContainer.RegisterType<IData, ProductData>();
 
-           serviceContainer.RegisterType<IService, ServiceA> ();
-           serviceContainer.RegisterType<IService, ServiceB> ();
+            var marketProduct = productContainer.Resolve<MarketProduct>();
 
-            var consumer = serviceContainer.Resolve<ServiceConsumer>();
-            consumer.CurrentService.DoSomeWork();
-           
+            marketProduct.GetPersonalCode();
+            marketProduct.GetDescription();
+
+            Console.ReadKey();
         }
     }
 }
