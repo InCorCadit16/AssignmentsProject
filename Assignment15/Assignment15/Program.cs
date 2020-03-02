@@ -4,7 +4,6 @@ using System.IO;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace Assignment15
 {
@@ -12,7 +11,19 @@ namespace Assignment15
     {
         static void Main(string[] args)
         {
-            DateTimeAndZones();
+            Console.WriteLine("1 - Strings and Encoding");
+            Console.WriteLine("2 - DateTime and Zones");
+            Console.WriteLine("3 - Finalizers and Disposable");
+            Console.WriteLine("4 - Last Task");
+            int.TryParse(Console.ReadLine(), out int i);
+
+            switch (i)
+            {
+                case 1: StringsWork(); break;
+                case 2: DateTimeAndZones(); break;
+                case 3: FinalizersAndDisposables(); break;
+                case 4: LastPoint(); break;
+            }
         }
 
 
@@ -47,7 +58,12 @@ namespace Assignment15
             Console.WriteLine("Choose Culture (two letters)");
             string code = Console.ReadLine().ToUpper();
 
-            CultureInfo.CurrentCulture = cultureList.First(culture => culture.CompareInfo.Name.Contains(code));
+            CultureInfo.CurrentCulture = cultureList.FirstOrDefault(culture => culture.CompareInfo.Name.Contains(code));
+            if (CultureInfo.CurrentCulture is null)
+            {
+                Console.WriteLine("No matching culture found");
+                return;
+            }
             Console.WriteLine(CultureInfo.CurrentCulture.TextInfo);
 
             // String comparing
@@ -58,10 +74,16 @@ namespace Assignment15
 
         public static void LastPoint()
         {
-            /*using (StreamWriter Writer = new StreamWriter("date.txt"))
+
+            FileInfo file = new FileInfo("date.txt");
+            if (!file.Exists)
             {
-                Writer.WriteLine(DateTime.Now.ToString(), CultureInfo.CurrentCulture);
-            }*/
+                using (StreamWriter Writer = new StreamWriter("date.txt"))
+                {
+                    Writer.WriteLine(DateTime.Now.ToString(), CultureInfo.CurrentCulture);
+                }
+            }
+           
 
             string dateStr;
             using (StreamReader Reader = new StreamReader("date.txt"))

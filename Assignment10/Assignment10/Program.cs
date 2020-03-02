@@ -73,14 +73,57 @@ namespace Assignment10
             return n > 9;
         }
 
-        public static ICollection<int> MoreThen(this ICollection<int> List, Func<int, bool> MoreThan)
+        /*public static ICollection<int> MoreThen(this ICollection<int> List, Func<int, bool> moreThan)
         {
             foreach (var d in List)
             {
-                if (!MoreThan(d))
+                if (!moreThan(d))
                     List.Remove(d);
             }
             return List;
+        }*/
+
+        public static bool HasDuplicates(List<int> numbers)
+        {
+            return numbers.Distinct().Count() != numbers.Count;
+            return numbers.GroupBy(val => val).Any(pair => pair.Count() > 1);
+
+
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+            foreach (var item in numbers)
+            {
+                if (!dict.ContainsKey(item))
+                {
+                    dict.Add(item, 1);
+                }
+                dict[item]++;
+            }
+
+            return dict.Values.Any(x => x > 1);
+        }
+
+
+        public static void Foo()
+        {
+            var even = new List<int> { 1, 2, 3 }
+                .Skip(1)
+                .Where(x =>
+                {
+                    Console.WriteLine(x);
+                    return x % 2 == 0;
+                })
+                .Where(x =>
+                {
+                    Console.WriteLine(x);
+                    return x < 10;
+                })
+                .FirstOrDefault();
+        }
+
+
+        public static IEnumerable<int> MoreThen(this ICollection<int> List, Func<int, bool> moreThan)
+        {
+            return List.Where(n => moreThan(n));
         }
 
         public static List<int> NewRandomArray()
