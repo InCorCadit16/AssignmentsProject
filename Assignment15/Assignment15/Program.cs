@@ -196,7 +196,7 @@ namespace Assignment15
 
         public OneValueHolder() : this(new T()) { }
 
-        ~OneValueHolder() 
+        ~OneValueHolder()
         {
             Console.WriteLine($"Finalizer called for {Value} value");
             Value = default;

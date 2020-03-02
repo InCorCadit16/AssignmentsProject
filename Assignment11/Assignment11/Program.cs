@@ -8,7 +8,7 @@ namespace Assignment11
     {
         static void Main(string[] args)
         {
-            var Names = new List<string> { "Jane", "Jacob", "Simon", "Terry", "Alex", "Simon", "John" };
+            var Names = new List<string> { "Jane", "Jacob", "Simon", "Terry", "Alex", "Simon", "John", "Johqw" };
             var Names2 = new List<string> { "Ion", "Alex", "Jane", "Artur", "Victor", "Ivy" };
             var Holders = new List<Holder>
             {
@@ -22,7 +22,29 @@ namespace Assignment11
 
             // Projection
             var PlusJR = Names.Select(s => s + " Jr.");
-            var NamesAndPrices = Holders.SelectMany(h => h.Available, (h, item) => new { h.Name, item.Price }).ToList();
+            var NamesAndPrices = Holders.Where(h => h.Name.Contains("#1")).SelectMany(h => h.Available, (h, item) => new { h.Name, item.Price });
+
+            var AllFirsts = Holders.Select(h => h.Available.First());
+            var AllFirstsWithNames = Holders.Where(h => h.Name.Contains("#1")).Select(h => new { holder = h, item = h.Available.First()});
+
+
+            var NamesAndRates = Names.Join(Holders.First().Available,
+                                n => n.Length,
+                                i => i.Rating,
+                                (name, item) => new { name, item.Rating });
+
+            var smth = Names2.GroupJoin(Names,
+                                        i => i.Length,
+                                        n => n.Length,
+                                        (item, name) => new { name, item }).ToList();
+
+            var Concat = Names.Concat(Names2);
+            var Lengths = Names.Sum(n => n.Length);
+            bool sequence = Names.SequenceEqual(Names2); 
+            foreach (var item in NamesAndPrices)
+            {
+                Console.WriteLine($"{item.Name} - {item.Price}");
+            }
 
 
             // Joining
@@ -37,6 +59,10 @@ namespace Assignment11
 
             // Grouping
             var GroupsOfNames = Names.GroupBy(s => s.Substring(0,3));
+            /*foreach (var item in GroupsOfNames)
+            {
+                Console.WriteLine(item.Count());
+            }*/
 
             // Set Operators
             var NoDublictes = Names.Union(Names2).ToHashSet();
@@ -45,7 +71,9 @@ namespace Assignment11
             var Artur = Names2.First(s => s.Contains("Art"));
 
             // Aggregation
-            var Product = Holders.First().Available.Select(item => item.Price).Aggregate((prod, price) => prod * price);
+            var Product = Holders.First().Available.Select(item => item.Price).Sum();
+
+            Console.WriteLine(Product);
 
             var HasZ = Names.Any(s => s.Contains('z'));
 
