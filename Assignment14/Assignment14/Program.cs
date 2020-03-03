@@ -65,6 +65,8 @@ namespace Assignment14
             int? v2 = null;
             int? v3 = default;
 
+            User usr = null;
+            Console.WriteLine(usr?.Age);
             var v4 = v2 ?? v3 ?? v1;
             Console.WriteLine(v4);
         }
@@ -98,7 +100,7 @@ namespace Assignment14
 
         class User
         {
-            public string FName { get; set; }
+            public string FName { get; set; } 
             public  string SName { get; set; }
             public DateTime Birthday { get; }
             public int Age { get; protected set; }

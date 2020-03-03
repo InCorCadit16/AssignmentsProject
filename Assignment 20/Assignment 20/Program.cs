@@ -10,15 +10,27 @@ namespace Assignment_20
     {
         static void Main(string[] args)
         {
+            var ctx = new Context();
 
+            var baseUserQuery = new Query(ctx)
+            {
+                AccessLevel = AccessLevel.Outer,
+                Address = 312
+            };
+
+            var data = baseUserQuery.Execute();
         }
     }
 
     public class Query
     {
+        public const int OuterDataStart = 500;
+        public const int AdminDataStart = 1200;
         private Context _context;
         
         public int Address { get; set; }
+
+        public AccessLevel AccessLevel { get; set; }
 
         public Query(Context context)
         {
@@ -29,6 +41,11 @@ namespace Assignment_20
         {
             if (Address <= 0)
                 return new Result("Wrong Address format");
+            if (AccessLevel < 0)
+                return new Result("Wrong Access Level format");
+            if ((Address >= OuterDataStart && AccessLevel < AccessLevel.Inner) ||
+                    (Address >= AdminDataStart && AccessLevel < AccessLevel.Admin))
+                return new Result("Do not have required Access Level");
             else
                 return _context.GetResult(Address);
         }
@@ -37,6 +54,20 @@ namespace Assignment_20
     public class Context
     {
         Dictionary<int, Result> _memory; 
+
+        public Context()
+        {
+            _memory = new Dictionary<int, Result>();
+            for (int i = 1; i <= 2000; i++)
+            {
+                if (i < Query.OuterDataStart)
+                    _memory.Add(i, new Result("Outer Access Data"));
+                else if (i < Query.AdminDataStart)
+                    _memory.Add(i, new Result("Inner Access Data"));
+                else
+                    _memory.Add(i, new Result("Only Admin Access Data"));
+            }
+        }
 
         public virtual Result GetResult(int Address)
         {
@@ -61,4 +92,6 @@ namespace Assignment_20
 
         public string Value { get; set; }
     }
+
+    public enum AccessLevel { Outer, Inner, Admin }
 }

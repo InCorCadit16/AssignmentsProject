@@ -91,7 +91,7 @@ namespace Assignment15
                 dateStr = Reader.ReadLine();
             }
 
-            DateTime date = DateTime.Parse(dateStr);
+            DateTime date = DateTime.Parse(dateStr, CultureInfo.InvariantCulture);
             Console.WriteLine($"Current culture: {date.ToString(CultureInfo.CurrentCulture)}");
             Console.WriteLine($"France culture: {date.ToString(CultureInfo.GetCultureInfo(12))}");
             Console.WriteLine($"Japan culture: {date.ToString(CultureInfo.GetCultureInfo(17))}");
