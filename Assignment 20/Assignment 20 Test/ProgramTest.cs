@@ -52,4 +52,36 @@ namespace Assignment_20_Test
             Assert.AreEqual(expected, result.Value);
         }
     }
+
+    [TestFixture]
+    public class ContextTest
+    {
+        Context _context;
+
+        [SetUp]
+        public void Setup()
+        {
+            _context = new Context();
+        }
+
+        [TestCase(-1, "No Result for this Address: -1")]
+        [TestCase(3000, "No Result for this Address: 3000")]
+        public void WhenAddress_NotPresentedInMemory_GetNoResult(int address, string expected)
+        {
+            Result res = _context.GetResult(address);
+
+            Assert.AreEqual(expected, res.Value);
+        }
+
+
+        [TestCase(350, "Outer Access Data")]
+        [TestCase(730, "Inner Access Data")]
+        [TestCase(1500, "Only Admin Access Data")]
+        public void WhenAddress_IsMatching_GetResult(int address, string expected)
+        {
+            Result res = _context.GetResult(address);
+
+            Assert.AreEqual(expected, res.Value);
+        }
+    }
 }
