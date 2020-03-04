@@ -24,8 +24,22 @@ namespace Assignment11
             var PlusJR = Names.Select(s => s + " Jr.");
             var NamesAndPrices = Holders.Where(h => h.Name.Contains("#1")).SelectMany(h => h.Available, (h, item) => new { h.Name, item.Price });
 
+            var v = Holders.Where(h => h.Name.Contains("#2")).SelectMany(h => h.Available, (h, item) => new { h.Name, item });
+
+            
+
             var AllFirsts = Holders.Select(h => h.Available.First());
             var AllFirstsWithNames = Holders.Where(h => h.Name.Contains("#1")).Select(h => new { holder = h, item = h.Available.First()});
+
+           // var C = Holders.SelectMany(h => h.Available, (h, item) => item).OrderBy(i => i.Price).ThenByDescending(i => i.Rating);
+
+            var e = Enumerable.Repeat(new Item(), 20);
+            foreach (var item in e)
+            {
+                Console.WriteLine($"{item.Price} - {item.Rating}");
+            }
+
+            
 
 
             var NamesAndRates = Names.Join(Holders.First().Available,
@@ -41,10 +55,10 @@ namespace Assignment11
             var Concat = Names.Concat(Names2);
             var Lengths = Names.Sum(n => n.Length);
             bool sequence = Names.SequenceEqual(Names2); 
-            foreach (var item in NamesAndPrices)
-            {
-                Console.WriteLine($"{item.Name} - {item.Price}");
-            }
+            //foreach (var item in NamesAndPrices)
+            //{
+            //    Console.WriteLine($"{item.Name} - {item.Price}");
+            //}
 
 
             // Joining
@@ -73,7 +87,7 @@ namespace Assignment11
             // Aggregation
             var Product = Holders.First().Available.Select(item => item.Price).Sum();
 
-            Console.WriteLine(Product);
+            //Console.WriteLine(Product);
 
             var HasZ = Names.Any(s => s.Contains('z'));
 
@@ -99,20 +113,20 @@ namespace Assignment11
             Method first = action[0];
             Method second = action[1];
 
-            first();
-            first();
-            first();
-            first();
+            //first();
+            //first();
+            //first();
+            //first();
 
-            second();
-            second();
-            second();
-            second();
+            //second();
+            //second();
+            //second();
+            //second();
 
-            first();
+            //first();
 
-            second();
-
+            //second();
+            Console.ReadLine();
         }
 
         public delegate void Method();

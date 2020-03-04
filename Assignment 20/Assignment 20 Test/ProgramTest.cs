@@ -34,6 +34,7 @@ namespace Assignment_20_Test
         {
             _query.Address = 5;
             _query.AccessLevel = (AccessLevel) (-2);
+
             Result result = _query.Execute();
 
             Assert.AreEqual("Wrong Access Level format", result.Value);
@@ -47,6 +48,7 @@ namespace Assignment_20_Test
         {
             _query.Address = value;
             _query.AccessLevel = al;
+
             Result result = _query.Execute();
 
             Assert.AreEqual(expected, result.Value);
