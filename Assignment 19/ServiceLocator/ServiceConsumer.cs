@@ -10,12 +10,13 @@ namespace ServiceLocator
         {
             ServiceConsumer consumer = new ServiceConsumer();
 
-            ServiceLocator.RegisterService(new ServiceA());
             ServiceLocator.RegisterService(new ServiceB());
 
-            consumer.CurrentService = ServiceLocator.Provide<ServiceA>();
+            consumer.CurrentService = ServiceLocator.Provide();
 
             consumer.CurrentService.DoSomeWork();
+
+            Console.ReadLine();
         }
     }
 }

@@ -7,9 +7,6 @@ using System.Text;
 
 namespace Assignment8
 {
-
-
-
     class Program
     {
         static void Main(string[] args)
@@ -25,16 +22,19 @@ namespace Assignment8
             {
                 Console.WriteLine(wne.StackTrace);
 
-                #if DEBUG
-                    throw;
+#if DEBUG
+                throw wne;// new Exception("msg", wne);
                 #endif
             }
             catch (LongStringException lse)
             {
-                Debug.Print(lse.Message);
+                
                 #if LONGSTR
                     Console.WriteLine("Long String Processed");
                 #endif
+
+                throw new Exception("String was too long", lse);
+
             }
 
 
@@ -85,12 +85,12 @@ namespace Assignment8
 
     class LongStringException : Exception
     {
-        public LongStringException(String Message) : base(Message) { }
+        public LongStringException(string Message) : base(Message) { }
     }
 
     class WrongNumberException : ArithmeticException
     {
-        public WrongNumberException(String Message) : base(Message) { }
+        public WrongNumberException(string Message) : base(Message) { }
     }
 
     class Licence

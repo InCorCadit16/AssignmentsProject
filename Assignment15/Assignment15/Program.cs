@@ -24,6 +24,8 @@ namespace Assignment15
                 case 3: FinalizersAndDisposables(); break;
                 case 4: LastPoint(); break;
             }
+
+            Console.ReadLine();
         }
 
 
@@ -67,7 +69,7 @@ namespace Assignment15
             Console.WriteLine(CultureInfo.CurrentCulture.TextInfo);
 
             // String comparing
-            Console.WriteLine($"î and i are {("î".Equals("i", StringComparison.CurrentCulture) ? "same" : "different")} in CurrentCulture");
+            Console.WriteLine($"î and i are {("î".Equals("i") ? "same" : "different")} in CurrentCulture");
 
             Console.WriteLine($"î and i are {("î".Equals("i", StringComparison.InvariantCulture) ? "same" : "different")} in InvariantCulture");
         }

@@ -6,23 +6,16 @@ namespace ServiceLocator
 {
     public static class ServiceLocator
     {
-        private static readonly Dictionary<Type, object>
-            services = new Dictionary<Type, object>();
+        static IService _instance;
 
-        public static T Provide<T>()
+        public static IService Provide()
         {
-            try
-            {
-                return (T)services[typeof(T)];
-            } catch (KeyNotFoundException ke)
-            {
-                throw new Exception($"Service of type {typeof(T)} is not registered", ke);
-            }
+            return _instance;
         }
 
-        public static void RegisterService<T>(T service)
+        public static void RegisterService(IService service)
         {
-            services[typeof(T)] = service;
+            _instance = service;
         }
     }
 }
